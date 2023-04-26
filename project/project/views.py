@@ -23,14 +23,15 @@ def edit_user(request):
         form = EditUserForm(request.POST, request.FILES, instance=author)
         if form.is_valid():
             form.save()
-            return redirect('user')
+            
+            return redirect('user' , id=user.id)
         
     context = {'form': form}
     return render(request, 'users/edit_user.html', context)
 
 @login_required(login_url='login')
-def user(request):
-    user = request.user
+def user(request, id):
+    user = get_object_or_404(User, pk=id)
     author = Author.objects.get(user=user)
     images = Image.objects.filter(author=user)
 
@@ -90,10 +91,15 @@ def home(request):
         Q(title__icontains=search_query) | Q(tags__name__icontains=search_query)
     )
 
+    author = None
+    if request.user.is_authenticated:
+        author = Author.objects.get(user=request.user)
+
 
     context = {
         'images': images,
         'user': request.user,
+        'author': author,
     }
     return render(request, 'home/home.html', context)
 

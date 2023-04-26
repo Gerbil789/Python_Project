@@ -34,7 +34,17 @@
             width: auto;
         }
 
-        .left img {
+        .left a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+            height: 65px;
+            width: auto;
+        }
+
+        .left a img {
             max-height: 100%;
             width: auto;
         }
@@ -80,6 +90,7 @@
         }
 
         .right a {
+            display: flex;
             font-size: larger;
             margin-left: 10px;
             padding: 5px 10px;
@@ -88,6 +99,16 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right a img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
 
@@ -157,7 +178,10 @@
     <div class="top-bar">
         {% load static %}
         <div class="left">
-            <img src="{% static 'icons/logo.png' %}" alt="Logo">
+            <a href="{% url 'home' %}"  >
+                <img src="{% static 'icons/logo.png' %}" alt="Logo">
+            </a>
+            
 
         </div>
         <div class="middle">
@@ -169,8 +193,12 @@
             <button type="button" onclick="location.href='{% url 'upload' %}'">Upload</button>
 
             {% if user.is_authenticated %}
-            <a href="{% url 'user' %}">{{user.username}}</a>
             <button type="button" onclick="location.href='{% url 'logout' %}'">Logout</button>
+            <a href="{% url 'user' user.id%}">
+                {{user.username}}
+                <img src="{{ author.avatar.url }}" alt="User image">
+            </a>
+            
             {% else %}
             <button type="button" onclick="location.href='{% url 'login' %}'">Login</button>
             {% endif %}

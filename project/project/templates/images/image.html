@@ -60,10 +60,13 @@
 		</div>
 		<div class="details">
 			<h1>{{image.title}}</h1>
-			<p>Author: {{image.author}}</p>
+			<a href="{% url 'user' image.author.id%}">
+				<p>Author: {{image.author}}</p>
+			</a>
+			
 			<p>{{image.date}}</p>
 			<p>{{image.description}}</p>
-			<button class="like-button">Like</button>
+			
 		</div>
 	</div>
 </body>

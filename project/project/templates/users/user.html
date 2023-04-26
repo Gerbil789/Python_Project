@@ -62,7 +62,7 @@
             margin-right: 20px;
         }
         .images img {
-            max-width: 150px;
+            max-width: 175px;
             margin-bottom: 10px;
             border-radius: 10px;
         }
@@ -70,9 +70,12 @@
 </head>
 <body>
     <div class="profile">
+        {% if request.user == author.user %}
         <button type="button" onclick="location.href='{% url 'edit_user' %}'">Edit</button>
-        <h2>{{ user.username }}</h2>
-        <p>{{ user.email }}</p>
+        {% endif %}
+        
+        <h2>{{ author.user.username }}</h2>
+        <p>{{ author.user.email }}</p>
         <img src="{{ author.avatar.url }}" alt="User image">
         <div class="bio">
             <h3>Bio</h3>
