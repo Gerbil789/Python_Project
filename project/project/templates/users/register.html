@@ -1,0 +1,57 @@
+<h3>Register</h3>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    {{form.username.label}}
+    <br>
+    {{form.username}}
+
+    <br>
+
+    {{form.email.label}}
+    <br>
+    {{form.email}}
+
+    <br>
+
+    {{form.password1.label}}
+    <br>
+    {{form.password1}}
+
+    <br>
+
+    {{form.password2.label}}
+    <br>
+    {{form.password2}}
+
+    <br>
+
+    {{form.avatar.label}}
+    <br>
+    {{form.avatar}}
+
+    <br>
+
+    {{form.bio.label}}
+    <br>
+    {{form.bio}}
+
+    <br>
+
+
+
+
+
+    <input type="submit" name="Create User" value="Register">
+    <br>
+
+    {{form.errors}}
+
+
+    <br>
+
+    <a href="{% url 'login' %}">login</a>
+    
+</form>

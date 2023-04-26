@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Details</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			background-color: #f2f2f2;
+            
+		}
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		.image-container {
+			flex: 2;
+			max-height: 90%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+            padding: 10px;
+		}
+		.image {
+			max-height: 100%;
+			max-width: 100%;
+		}
+		.details {
+			flex: 1;
+			padding: 20px;
+		}
+		h1 {
+			font-size: 28px;
+			margin-top: 0;
+		}
+		p {
+			font-size: 18px;
+			margin-top: 0;
+            
+		}
+		.like-button {
+			background-color: #3498db;
+			border: none;
+			color: #fff;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="image-container">
+			<img src="{{image.image.url}}" class="image">
+		</div>
+		<div class="details">
+			<h1>{{image.title}}</h1>
+			<p>Author: {{image.author}}</p>
+			<p>{{image.date}}</p>
+			<p>{{image.description}}</p>
+			<button class="like-button">Like</button>
+		</div>
+	</div>
+</body>
+</html>
