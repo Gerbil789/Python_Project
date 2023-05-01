@@ -22,7 +22,7 @@ class Image(models.Model):
     description = models.TextField(max_length=1000, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     date = models.DateTimeField(default=datetime.now)
-    tags = models.ManyToManyField(Tag)
+    #tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title

@@ -1,57 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Image Details</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: sans-serif;
-			background-color: #f2f2f2;
-            
-		}
-		.container {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-		}
-		.image-container {
-			flex: 2;
-			max-height: 90%;
-			height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-            padding: 10px;
-		}
-		.image {
-			max-height: 100%;
-			max-width: 100%;
-		}
-		.details {
-			flex: 1;
-			padding: 20px;
-		}
-		h1 {
-			font-size: 28px;
-			margin-top: 0;
-		}
-		p {
-			font-size: 18px;
-			margin-top: 0;
-            
-		}
-		.like-button {
-			background-color: #3498db;
-			border: none;
-			color: #fff;
-			padding: 10px 20px;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-	</style>
+	<title>{{image.title}}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/image.css' %}">
 </head>
 <body>
 	<div class="container">
@@ -60,13 +13,19 @@
 		</div>
 		<div class="details">
 			<h1>{{image.title}}</h1>
+			Author
 			<a href="{% url 'user' image.author.id%}">
-				<p>Author: {{image.author}}</p>
+				<p>{{image.author}}</p>
 			</a>
 			
+			Upload date
 			<p>{{image.date}}</p>
-			<p>{{image.description}}</p>
-			
+
+			 {% if image.description %}
+            Description
+            <p>{{ image.description }}</p>
+        {% endif %}
+			<a href="{% url 'download_image' image_id=image.pk %}">Download</a>
 		</div>
 	</div>
 </body>

@@ -11,7 +11,7 @@ class UploadForm(ModelForm):
     
     class Meta:
         model = Image
-        fields = ['title', 'image', 'description', 'tags']
+        fields = ['title', 'image', 'description']
 
 
 class CreateUserForm(UserCreationForm):

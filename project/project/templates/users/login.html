@@ -1,20 +1,37 @@
-<h3>Login</h3>
+{% load static %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="username">
-    <br>
-    <input type="password" name="password" placeholder="password">
-    <br>
+<!DOCTYPE html>
+<html lang="en">
 
-    <input type="submit" name="Login" value="Login">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-    <br>
+</head>
 
-    {% for message in messages%}
+<body>
+
+    <h3>Login</h3>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username">
+        <br>
+        <input type="password" name="password" placeholder="password">
+        <br>
+
+        <input type="submit" name="Login" value="Login">
+
+        <br>
+
+        {% for message in messages%}
         <p id="messages">{{message}}</p>
-    {% endfor %}
+        {% endfor %}
 
-    <br>
-    <a href="{% url 'register' %}">register</a>
-</form>
+        <br>
+        <a href="{% url 'register' %}">register</a>
+    </form>
+</body>
+
+</html>

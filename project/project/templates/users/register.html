@@ -1,3 +1,15 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+
 <h3>Register</h3>
 
 <form method="POST" action="" enctype="multipart/form-data">
@@ -53,5 +65,10 @@
     <br>
 
     <a href="{% url 'login' %}">login</a>
-    
+
 </form>
+
+<body>
+</body>
+
+</html>

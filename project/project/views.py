@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from .models import Image, Author, Tag
+from .models import Image, Author
 from .forms import UploadForm, CreateUserForm, EditUserForm
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, FileResponse
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -11,6 +11,18 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import os
+
+
+
+def download_image(request, image_id):
+    image = get_object_or_404(Image, pk=image_id)
+    file_path = image.image.path
+    with open(file_path, 'rb') as f:
+        response = HttpResponse(f.read())
+        response['Content-Type'] = 'image/jpeg'  # Replace with the content type of your image
+        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(file_path)}"'
+    return response
 
 
 @login_required(login_url='login')
@@ -88,7 +100,7 @@ def home(request):
     #images = Image.objects.filter(title__icontains=search_query) # Filter the images based on the search query
     search_query = request.GET.get('search', '')
     images = Image.objects.filter(
-        Q(title__icontains=search_query) | Q(tags__name__icontains=search_query)
+        Q(title__icontains=search_query)
     )
 
     author = None
